@@ -9,9 +9,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0",
-    "@react-pdf/renderer": "^2.0.0-beta.5",
+    "@react-pdf/renderer": "2.0.0-beta.6",
     "graphql": "^15.3.0",
-    "next": "9.4.4",
+    "iconv-lite": "^0.6.2",
+    "next": "9.1.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
