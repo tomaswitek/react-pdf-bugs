@@ -12,12 +12,17 @@ import {useApollo} from "../lib/apolloClient";
 import RendererContext, {RendererType} from "../lib/RendererContext";
 import Rates from "../components/Rates";
 
-Font.register({
+const font = {
   family: "GraphikLight",
   src: require("../public/fonts/Graphik-Light.ttf").default,
+  // src: "sadasdasdasdsadasd",
   fontStyle: "normal",
   fontWeight: "light",
-});
+};
+
+console.log("Register font:", font, __filename);
+
+Font.register(font);
 
 // Create styles
 const styles = StyleSheet.create({

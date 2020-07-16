@@ -8,7 +8,7 @@ module.exports = {
   },
   webpack: (config, {buildId, dev, isServer, defaultLoaders, webpack}) => {
     config.module.rules.push({
-      test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+      test: /\.(ttf)$/,
       use: {
         loader: "url-loader",
         options: {
