@@ -1,9 +1,25 @@
 import React from "react";
-import {Page, Text, View, Document, StyleSheet} from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
 import {ApolloProvider} from "@apollo/client";
 import {useApollo} from "../lib/apolloClient";
 import RendererContext, {RendererType} from "../lib/RendererContext";
 import Rates from "../components/Rates";
+
+console.log(require("../public/fonts/Graphik-Light.ttf"));
+
+Font.register({
+  family: "GraphikLight",
+  src: require("../public/fonts/Graphik-Light.ttf").default,
+  fontStyle: "normal",
+  fontWeight: "light",
+});
 
 // Create styles
 const styles = StyleSheet.create({
@@ -15,6 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     margin: "20 0",
+    fontFamily: "GraphikLight",
   },
   rates: {},
 });
