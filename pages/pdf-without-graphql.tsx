@@ -1,25 +1,40 @@
-import ReactPDF, {pdf} from "@react-pdf/renderer";
+import ReactPDF from "@react-pdf/renderer";
 import RatesPDF from "../components/RatesPDF";
+import {ServerResponse} from "http";
 
 const PdfPage = () => null;
 
-PdfPage.getInitialProps = async ({res}) => {
-  // const stream = await ReactPdf.renderToStream(<RatesPDF currency="USD" />);
+PdfPage.getInitialProps = async ({res}: {res: ServerResponse}) => {
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
+  const currency = "USD";
+  const stream = await ReactPDF.renderToStream(
+    <RatesPDF currency={currency} />
+  );
 
-  await ReactPDF.render(<RatesPDF currency="USD" />, `output.pdf`);
-  // const stream = await pdf(<RatesPDF currency="USD" />);
+  stream.on("data", (data) => {
+    res.write(data);
+  });
 
-  // console.log(stream);
+  stream.on("end", (data) => {
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
+    res.end();
+  });
 
-  // const string = await stream.toBuffer();
+  // stream.on("end", () => {
+  //   res.setHeader("Content-Type", "application/pdf");
+  //   res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
+  //   res.end();
+  // });
 
-  // if (stream && res) {
-  //   // res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
-  //   // res.setHeader("Content-Type", "application/pdf");
-  //   stream.pipe(stream);
-  // }
+  // stream.pipe(res);
+  // stream.
 
-  return {};
+  // res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
+  // res.setHeader("Content-Type", "application/pdf");
+
+  return {currency};
 };
 
 export default PdfPage;
