@@ -12,8 +12,6 @@ import {useApollo} from "../lib/apolloClient";
 import RendererContext, {RendererType} from "../lib/RendererContext";
 import Rates from "../components/Rates";
 
-console.log(require("../public/fonts/Graphik-Light.ttf"));
-
 Font.register({
   family: "GraphikLight",
   src: require("../public/fonts/Graphik-Light.ttf").default,
