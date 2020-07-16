@@ -1,7 +1,13 @@
 import ReactPDF from "@react-pdf/renderer";
 import {NextApiRequest, NextApiResponse} from "next";
 import PdfPage from "../pdf";
-import {getMarkupFromTree} from "@apollo/client/react/ssr";
+// import {getMarkupFromTree} from "@apollo/client/react/ssr";
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Content-Type", "application/pdf");
@@ -14,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   renderFunction: ReactPDF.renderToStream,
   // });
 
-  // Send data back as a response
+  // Sends data back as a response
   stream.on("data", (data) => {
     res.write(data);
   });
