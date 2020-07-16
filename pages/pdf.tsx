@@ -1,23 +1,45 @@
-import ReactPdf from "@react-pdf/renderer";
-import {getMarkupFromTree} from "@apollo/client/react/ssr";
-import RatesPDF from "../components/RatesPDF";
+import React from "react";
+import {Page, Text, View, Document, StyleSheet} from "@react-pdf/renderer";
+import {ApolloProvider} from "@apollo/client";
+import {useApollo} from "../lib/apolloClient";
+import RendererContext, {RendererType} from "../lib/RendererContext";
+import Rates from "../components/Rates";
 
-const PdfPage = () => null;
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    backgroundColor: "#E4E4E4",
+    padding: "50 100",
+  },
+  title: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: "20 0",
+  },
+  rates: {},
+});
 
-PdfPage.getInitialProps = async (ctx) => {
-  const {res, apolloClient} = ctx;
-  const stream = await getMarkupFromTree({
-    tree: <RatesPDF apolloClient={apolloClient} />,
-    renderFunction: ReactPdf.renderToStream,
-  });
+interface PdfPageProps {
+  currency: string;
+}
 
-  if (stream && res) {
-    res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
-    res.setHeader("Content-Type", "application/pdf");
-    stream.pipe(res);
-  }
-
-  return {};
-};
+// Create Document Component
+function PdfPage({currency}: PdfPageProps) {
+  const apolloClient = useApollo(null);
+  return (
+    <RendererContext.Provider value={{rendererType: RendererType.PDF}}>
+      <ApolloProvider client={apolloClient}>
+        <Document>
+          <Page size="A4" style={styles.page}>
+            <Text style={styles.title}>{currency} Rates</Text>
+            <View style={styles.rates}>
+              <Rates currency="USD" />
+            </View>
+          </Page>
+        </Document>
+      </ApolloProvider>
+    </RendererContext.Provider>
+  );
+}
 
 export default PdfPage;

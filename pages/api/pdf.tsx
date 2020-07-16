@@ -1,15 +1,25 @@
 import ReactPDF from "@react-pdf/renderer";
-import RatesPDF from "../../components/RatesPDF";
 import {NextApiRequest, NextApiResponse} from "next";
+import PdfPage from "../pdf";
+import {getMarkupFromTree} from "@apollo/client/react/ssr";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Content-Type", "application/pdf");
-  // res.setHeader("Content-disposition", 'attachment; filename="rates.pdf"');
-  const stream = await ReactPDF.renderToStream(<RatesPDF currency="USD" />);
+  // This renders to a stream but doesn't wait for the API calls to be finshed
+  // const stream = await ReactPDF.renderToStream(<PdfPage currency="USD" />);
+
+  // This waits for API calls but expects to render to a string
+  const stream = await getMarkupFromTree({
+    tree: <PdfPage currency="USD" />,
+    renderFunction: ReactPDF.renderToStream,
+  });
+
+  // Send data back as a response
   stream.on("data", (data) => {
     res.write(data);
   });
   stream.on("end", () => {
+    res.statusCode = 200;
     res.end();
   });
 };

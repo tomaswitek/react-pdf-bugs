@@ -1,4 +1,7 @@
 import {gql, useQuery} from "@apollo/client";
+import Table, {TableRow, TableCell} from "./Table";
+import RatesPlaceholder from "./RatesPlaceholder";
+import RatesHeader from "./RatesHeader";
 
 const GET_RATES = gql`
   query GetRates($currency: String!) {
@@ -28,32 +31,23 @@ function Rates({currency}: RatesProps) {
   const {loading, data, error} = useQuery<RateResult>(GET_RATES, {
     variables: {currency},
   });
-  if (loading) {
-    return <>Loading...</>;
-  }
   if (error) {
     throw error;
   }
-  console.log(data);
+  if (loading) {
+    return <RatesPlaceholder />;
+  }
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Currency</th>
-          <th>Name</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.rates.map((rate) => (
-          <tr>
-            <td>{rate.currency}</td>
-            <td>{rate.name}</td>
-            <td>{rate.rate}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <Table>
+      <RatesHeader />
+      {data.rates.map((rate) => (
+        <TableRow>
+          <TableCell>{rate.currency}</TableCell>
+          <TableCell>{rate.name}</TableCell>
+          <TableCell>{rate.rate}</TableCell>
+        </TableRow>
+      ))}
+    </Table>
   );
 }
 
