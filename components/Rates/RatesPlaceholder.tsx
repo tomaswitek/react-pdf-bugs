@@ -1,15 +1,17 @@
-import Table, {TableRow, TableCell} from "../Table";
+import Table, {TableBody, TableRow, TableCell} from "../Table";
 import RatesHeader from "./RatesHeader";
 
 function RatesPlaceholder() {
   return (
     <Table>
       <RatesHeader />
-      <TableRow>
-        <TableCell>...</TableCell>
-        <TableCell>...</TableCell>
-        <TableCell>...</TableCell>
-      </TableRow>
+      <TableBody>
+        <TableRow>
+          <TableCell>...</TableCell>
+          <TableCell>...</TableCell>
+          <TableCell>...</TableCell>
+        </TableRow>
+      </TableBody>
     </Table>
   );
 }

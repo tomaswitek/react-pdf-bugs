@@ -1,12 +1,14 @@
-import {TableRow, TableCell} from "../Table";
+import {TableHead, TableRow, TableCell} from "../Table";
 
 function RatesHeader() {
   return (
-    <TableRow>
-      <TableCell>Currency</TableCell>
-      <TableCell>Name</TableCell>
-      <TableCell>Rate</TableCell>
-    </TableRow>
+    <TableHead>
+      <TableRow>
+        <TableCell>Currency</TableCell>
+        <TableCell>Name</TableCell>
+        <TableCell>Rate</TableCell>
+      </TableRow>
+    </TableHead>
   );
 }
 

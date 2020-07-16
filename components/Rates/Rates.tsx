@@ -1,5 +1,5 @@
 import {gql, useQuery} from "@apollo/client";
-import Table, {TableRow, TableCell} from "../Table";
+import Table, {TableRow, TableCell, TableBody} from "../Table";
 import RatesPlaceholder from "./RatesPlaceholder";
 import RatesHeader from "./RatesHeader";
 
@@ -40,13 +40,15 @@ function Rates({currency}: RatesProps) {
   return (
     <Table>
       <RatesHeader />
-      {data.rates.map((rate) => (
-        <TableRow>
-          <TableCell>{rate.currency}</TableCell>
-          <TableCell>{rate.name}</TableCell>
-          <TableCell>{rate.rate}</TableCell>
-        </TableRow>
-      ))}
+      <TableBody>
+        {data.rates.map((rate) => (
+          <TableRow key={rate.currency}>
+            <TableCell>{rate.currency}</TableCell>
+            <TableCell>{rate.name}</TableCell>
+            <TableCell>{rate.rate}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
     </Table>
   );
 }
