@@ -1,8 +1,8 @@
 import React from "react";
 import {Page, Text, View, Document, StyleSheet} from "@react-pdf/renderer";
 import {ApolloProvider} from "@apollo/client";
-import {useApollo} from "../lib/apolloClient";
-import RendererContext, {RendererType} from "../lib/RendererContext";
+import {useApollo} from "../../lib/apolloClient";
+import RendererContext, {RendererType} from "../../lib/RendererContext";
 
 // Create styles
 const styles = StyleSheet.create({

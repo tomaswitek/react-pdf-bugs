@@ -1,4 +1,4 @@
-import {TableRow, TableCell} from "./Table";
+import {TableRow, TableCell} from "../Table";
 
 function RatesHeader() {
   return (

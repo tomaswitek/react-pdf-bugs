@@ -1,4 +1,4 @@
-import Table, {TableRow, TableCell} from "./Table";
+import Table, {TableRow, TableCell} from "../Table";
 import RatesHeader from "./RatesHeader";
 
 function RatesPlaceholder() {

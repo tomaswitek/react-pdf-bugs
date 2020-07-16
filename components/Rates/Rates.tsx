@@ -1,5 +1,5 @@
 import {gql, useQuery} from "@apollo/client";
-import Table, {TableRow, TableCell} from "./Table";
+import Table, {TableRow, TableCell} from "../Table";
 import RatesPlaceholder from "./RatesPlaceholder";
 import RatesHeader from "./RatesHeader";
 
