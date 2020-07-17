@@ -15,8 +15,8 @@ function PdfChart() {
               style={{stroke: "#777", strokeWidth: 1}}
             />
             <Text
-              dominant-baseline="text-before-edge"
-              text-anchor="middle"
+              dominantBaseline="text-before-edge"
+              textAnchor="middle"
               transform="translate(0,10) rotate(0)"
               style={{
                 fontSize: "8px",
