@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Languages from "../components/Languages";
+import Chart from "../components/Chart";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">Languages</h1>
+        <Chart />
         <Languages />
       </main>
 
@@ -85,6 +87,7 @@ export default function Home() {
       <style jsx global>{`
         html,
         body {
+          background-color: #e4e4e4;
           padding: 0;
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,

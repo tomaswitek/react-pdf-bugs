@@ -11,6 +11,9 @@ import {ApolloProvider} from "@apollo/client";
 import {useApollo} from "../lib/apolloClient";
 import RendererContext, {RendererType} from "../lib/RendererContext";
 import Languages from "../components/Languages";
+import Chart from "../components/Chart";
+import PdfChart from "../components/PdfChart";
+import Svg from "../components/Svg";
 
 const font = {
   family: "GraphikLight",
@@ -47,6 +50,10 @@ function PdfPage() {
           <Page size="A4" style={styles.page}>
             <Text style={styles.title}>Languages</Text>
             <View style={styles.rates}>
+              <PdfChart />
+              <Svg>
+                <Chart />
+              </Svg>
               <Languages />
             </View>
           </Page>
