@@ -51,9 +51,6 @@ function PdfPage() {
             <Text style={styles.title}>Languages</Text>
             <View style={styles.rates}>
               <PdfChart />
-              <Svg>
-                <Chart />
-              </Svg>
               <Languages />
             </View>
           </Page>
