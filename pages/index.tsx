@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Rates from "../components/Rates";
+import Languages from "../components/Languages";
 
 export default function Home() {
   return (
@@ -10,8 +10,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">USD Rates</h1>
-        <Rates currency="USD" />
+        <h1 className="title">Languages</h1>
+        <Languages />
       </main>
 
       <footer>
@@ -78,6 +78,7 @@ export default function Home() {
           line-height: 1.15;
           font-size: 4rem;
           text-align: center;
+          margin-bottom: 30px;
         }
       `}</style>
 

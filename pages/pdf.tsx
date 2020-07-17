@@ -10,17 +10,14 @@ import {
 import {ApolloProvider} from "@apollo/client";
 import {useApollo} from "../lib/apolloClient";
 import RendererContext, {RendererType} from "../lib/RendererContext";
-import Rates from "../components/Rates";
+import Languages from "../components/Languages";
 
 const font = {
   family: "GraphikLight",
   src: require("../public/fonts/Graphik-Light.ttf").default,
-  // src: "sadasdasdasdsadasd",
   fontStyle: "normal",
   fontWeight: "light",
 };
-
-console.log("Register font:", font, __filename);
 
 Font.register(font);
 
@@ -39,21 +36,18 @@ const styles = StyleSheet.create({
   rates: {},
 });
 
-interface PdfPageProps {
-  currency: string;
-}
-
 // Create Document Component
-function PdfPage({currency}: PdfPageProps) {
+function PdfPage() {
   const apolloClient = useApollo(null);
+
   return (
     <RendererContext.Provider value={{rendererType: RendererType.PDF}}>
       <ApolloProvider client={apolloClient}>
         <Document>
           <Page size="A4" style={styles.page}>
-            <Text style={styles.title}>{currency} Rates</Text>
+            <Text style={styles.title}>Languages</Text>
             <View style={styles.rates}>
-              <Rates currency="USD" />
+              <Languages />
             </View>
           </Page>
         </Document>

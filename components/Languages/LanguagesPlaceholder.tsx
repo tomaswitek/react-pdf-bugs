@@ -1,10 +1,10 @@
 import Table, {TableBody, TableRow, TableCell} from "../Table";
-import RatesHeader from "./RatesHeader";
+import LanguagesHeader from "./LanguagesHeader";
 
 function RatesPlaceholder() {
   return (
     <Table>
-      <RatesHeader />
+      <LanguagesHeader />
       <TableBody>
         <TableRow>
           <TableCell>...</TableCell>

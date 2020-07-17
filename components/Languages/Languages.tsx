@@ -1,10 +1,10 @@
 import {gql, useQuery} from "@apollo/client";
 import Table, {TableRow, TableCell, TableBody} from "../Table";
-import RatesPlaceholder from "./RatesPlaceholder";
-import RatesHeader from "./RatesHeader";
+import LanguagesPlaceholder from "./LanguagesPlaceholder";
+import LanguagesHeader from "./LanguagesHeader";
 
-const GET_RATES = gql`
-  query GetRates {
+const GET_LANGUAGES = gql`
+  query GetLanguages {
     languages {
       code
       name
@@ -13,31 +13,27 @@ const GET_RATES = gql`
   }
 `;
 
-interface RatesProps {
-  currency: string;
-}
-
-interface Rate {
+interface Language {
   code: string;
   name: string;
   native: string;
 }
 
-interface RateResult {
-  languages: Rate[];
+interface LanguageResult {
+  languages: Language[];
 }
 
-function Rates({currency}: RatesProps) {
-  const {loading, data, error} = useQuery<RateResult>(GET_RATES);
+function Languages() {
+  const {loading, data, error} = useQuery<LanguageResult>(GET_LANGUAGES);
   if (error) {
     throw error;
   }
   if (loading) {
-    return <RatesPlaceholder />;
+    return <LanguagesPlaceholder />;
   }
   return (
     <Table>
-      <RatesHeader />
+      <LanguagesHeader />
       <TableBody>
         {data.languages.map((rate) => (
           <TableRow key={rate.code}>
@@ -51,4 +47,4 @@ function Rates({currency}: RatesProps) {
   );
 }
 
-export default Rates;
+export default Languages;

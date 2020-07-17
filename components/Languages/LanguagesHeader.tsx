@@ -1,15 +1,15 @@
 import {TableHead, TableRow, TableCell} from "../Table";
 
-function RatesHeader() {
+function LanguagesHeader() {
   return (
     <TableHead>
       <TableRow>
-        <TableCell>Currency</TableCell>
+        <TableCell>Code</TableCell>
         <TableCell>Name</TableCell>
-        <TableCell>Rate</TableCell>
+        <TableCell>Native</TableCell>
       </TableRow>
     </TableHead>
   );
 }
 
-export default RatesHeader;
+export default LanguagesHeader;
