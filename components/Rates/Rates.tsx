@@ -4,11 +4,11 @@ import RatesPlaceholder from "./RatesPlaceholder";
 import RatesHeader from "./RatesHeader";
 
 const GET_RATES = gql`
-  query GetRates($currency: String!) {
-    rates(currency: $currency) {
-      currency
+  query GetRates {
+    languages {
+      code
       name
-      rate
+      native
     }
   }
 `;
@@ -18,19 +18,17 @@ interface RatesProps {
 }
 
 interface Rate {
-  currency: string;
+  code: string;
   name: string;
-  rate: number;
+  native: string;
 }
 
 interface RateResult {
-  rates: Rate[];
+  languages: Rate[];
 }
 
 function Rates({currency}: RatesProps) {
-  const {loading, data, error} = useQuery<RateResult>(GET_RATES, {
-    variables: {currency},
-  });
+  const {loading, data, error} = useQuery<RateResult>(GET_RATES);
   if (error) {
     throw error;
   }
@@ -41,11 +39,11 @@ function Rates({currency}: RatesProps) {
     <Table>
       <RatesHeader />
       <TableBody>
-        {data.rates.map((rate) => (
-          <TableRow key={rate.currency}>
-            <TableCell>{rate.currency}</TableCell>
+        {data.languages.map((rate) => (
+          <TableRow key={rate.code}>
+            <TableCell>{rate.code}</TableCell>
             <TableCell>{rate.name}</TableCell>
-            <TableCell>{rate.rate}</TableCell>
+            <TableCell>{rate.native}</TableCell>
           </TableRow>
         ))}
       </TableBody>
