@@ -22,6 +22,24 @@ function PdfChart() {
       >
         01.05.20
       </Text>
+      <G transform="translate(100,100) rotate(0)">
+        <Line
+          x1="0"
+          x2="200"
+          y1="0"
+          y2="0"
+          stroke="#dddddd"
+          strokeWidth="1"
+        ></Line>
+        <Text
+          dominantBaseline="central"
+          textAnchor="start"
+          transform="translate(10,0) rotate(0)"
+          style={{fill: "rgb(51, 51, 51)"}}
+        >
+          0
+        </Text>
+      </G>
     </Svg>
   );
 }
